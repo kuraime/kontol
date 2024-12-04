@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+    environment {
+        MAVEN_HOME = tool 'Maven'  // Ensure Maven is configured as a global tool in Jenkins
+    }
+    stages {
+//         stage('Checkout Code') {
+//             steps {
+//                 git branch: 'main', url: 'https://your-repo-url.git'
+//             }
+//         }
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    // Ensure Appium server and required services are up if needed
+                    sh 'appium --version'  // Check if Appium is installed
+                }
+            }
+        }
+        stage('Build Project') {
+            steps {
+                sh "${MAVEN_HOME}/bin/mvn clean install"
+            }
+        }
+        stage('Run Appium Tests') {
+            steps {
+                sh "${MAVEN_HOME}/bin/mvn test -Dtest=TestRunner"
+            }
+        }
+        stage('Generate Serenity Report') {
+            steps {
+                // Generate and publish the Serenity report
+                publishHTML (target: [
+                    reportDir: 'target/serenity-reports',
+                    reportFiles: 'index.html',
+                    reportName: 'Serenity Report'
+                ])
+            }
+        }
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: 'target/serenity-reports/**/*.*', allowEmptyArchive: true
+            junit '**/target/surefire-reports/*.xml'
+        }
+        cleanup {
+            echo 'Cleaning up workspace...'
+            deleteDir()
+        }
+    }
+}
