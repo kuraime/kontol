@@ -1,6 +1,7 @@
 package com.danamon.appium.pages.authentication;
 
 import com.danamon.appium.pages.common.BasePage;
+import com.danamon.appium.utils.ApplicationUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -21,6 +22,9 @@ public class LoginPage extends BasePage {
 	public static final String LoginButtonIdXPath = "//android.widget.ScrollView/android.view.View[2]/android.widget.Button";
 	public static final String iconButtonHelloDanmonXPath = "//android.widget.ScrollView/android.widget.Button";
 	public static final String bottomSheetViePromPageXPath = "//android.view.View[@content-desc=\"Drag Handle\"]";
+	public static final String popupErrorInvalidCredential = "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]";
+	public static final String popupErrorHeader = "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView[1]";
+	public static final String popupErrorButton = "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]/android.widget.Button";
 
 	public void loadPage() {
 		if (applicationUtils.objectExists(applicationUtils.getXPath(androidTextInputUsernameXPath, iosTextInputUsernameXPath))) {
@@ -51,5 +55,11 @@ public class LoginPage extends BasePage {
 
 	public void clickLoginButton() {
 		Assert.assertTrue(applicationUtils.tapElement(By.xpath(LoginButtonIdXPath), null));
+	}
+
+	public void clickPopupErrorButton(){
+		Assert.assertTrue(applicationUtils.getElementIsDisplayed(By.xpath(popupErrorInvalidCredential)));
+		Assert.assertTrue(applicationUtils.getElementIsDisplayed(By.xpath(popupErrorHeader)));
+		Assert.assertTrue(applicationUtils.tapElement(By.xpath(popupErrorButton),null));
 	}
 }

@@ -58,5 +58,8 @@ public class LoginInvalidCredentialStepDefinition extends BasePage {
 
     @Then("User will see popup for invalide credential")
     public void userWillSeePopupForInvalideCredential() {
+        loginPage.clickPopupErrorButton();
+        loginPage.loadPage();
+        test.pass("yay");
     }
 }
