@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 @CucumberOptions(
 		features = "src/test/resources/features",
 		glue = {"com.danamon.appium.steps"},
-		tags = "(@TransferOverbooking)",
+		tags = "(@LoginInvalidCredential)",
 		plugin = {"pretty",
 				"html:target/cucumber-reports/dpro-appium-cucumber.html"})
 public class TestNGRunner {
