@@ -9,8 +9,8 @@ public class MPINPage extends BasePage {
 	public static final String androidMpinPageXPath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]";
 	public static final String iosMpinPageXPath = "";
 
-	public static final String androidMPINTitlePageXPath = "//android.widget.TextView[@text=\"Enter mPIN\"]";
-	public static final String iosMPINTitlePageXPath = "//android.widget.TextView[@text=\"Enter mPIN\"]";
+	public static final String androidMPINTitlePageXPath = "//android.widget.TextView[@text=\"Masukkan mPIN\"]";
+	public static final String iosMPINTitlePageXPath = "//android.widget.TextView[@text=\"Masukkan mPIN\"]";
 
 	public static final String androidNumberOneXPath = "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View[1]/android.widget.Button";
 	public static final String iosNumberOneXPath = "";

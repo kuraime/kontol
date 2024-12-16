@@ -1,6 +1,5 @@
 package com.danamon.appium.runners;
 
-import com.aventstack.extentreports.ExtentReports;
 import com.danamon.appium.utils.ExtentReportManager;
 import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.FeatureWrapper;
@@ -14,7 +13,7 @@ import org.testng.annotations.Test;
 @CucumberOptions(
 		features = "src/test/resources/features",
 		glue = {"com.danamon.appium.steps"},
-		tags = "(@LoginInvalidCredential)",
+		tags = "(@pinChange)",
 		plugin = {"pretty",
 				"html:target/cucumber-reports/dpro-appium-cucumber.html"})
 public class TestNGRunner {
